@@ -113,6 +113,7 @@ class DaMaiHelperService : AccessibilityService(), UserManager.IStartListener {
         }
         if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             when (event.className.toString()) {
+
                 ME_UI -> {
                     step = STEP_FIRST
                     event.source?.let { source ->
@@ -178,6 +179,9 @@ class DaMaiHelperService : AccessibilityService(), UserManager.IStartListener {
 
     private fun requestOrder(event: AccessibilityEvent) {
         event.source?.let { source ->
+            val buyerCheckBox = source.getNodeById(dmNodeId("checkbox")) //勾选实名观演人
+//            Log.d("Variable Type", "num is of type: " + num.getClass().getSimpleName());
+            buyerCheckBox?.click()
             val nodeByText = source.getNodeByText("提交订单", true)
             nodeByText?.let {
                 it.click()
