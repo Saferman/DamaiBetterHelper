@@ -179,7 +179,8 @@ class DaMaiHelperService : AccessibilityService(), UserManager.IStartListener {
 
     private fun requestOrder(event: AccessibilityEvent) {
         event.source?.let { source ->
-            val buyerCheckBox = source.getNodeById(dmNodeId("checkbox")) //勾选实名观演人
+//            val buyerCheckBox = source.getNodeById(dmNodeId("checkbox")) //勾选实名观演人 index 3
+            val buyerCheckBox = source.getNodeByText("身份证", true) // 实测这里有效
 //            Log.d("Variable Type", "num is of type: " + num.getClass().getSimpleName());
             buyerCheckBox?.click()
             val nodeByText = source.getNodeByText("提交订单", true)
